@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="199.0" prefWidth="375.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cableaccountmanager.user.ConnectiondialogController">
+   <children>
+      <Label fx:id="lblMessage" layoutX="75.0" layoutY="24.0" prefHeight="29.0" prefWidth="297.0" text="Message" textFill="#ea0505">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="70.0" text="Name :- " />
+      <Label layoutX="75.0" layoutY="100.0" text="Area :-" />
+      <Label layoutX="75.0" layoutY="128.0" text="Card Number :-" />
+      <Label fx:id="lblName" layoutX="144.0" layoutY="70.0" text="name" />
+      <Label fx:id="lblArea" layoutX="144.0" layoutY="100.0" text="area" />
+      <Label fx:id="lblCard" layoutX="167.0" layoutY="128.0" text="cardnumber" textFill="#ea0505" />
+      <Button fx:id="btnOk" layoutX="162.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Okay" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="582.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cableaccountmanager.user.PayBalanceController">
+    <children>
+      <Label layoutX="139.0" layoutY="56.0" text="Name :-" />
+      <Label layoutX="139.0" layoutY="97.0" text="Card Number :-" />
+      <Label layoutX="139.0" layoutY="135.0" text="Last bill date :-" />
+      <Label layoutX="139.0" layoutY="179.0" text="Balance Amount :-" />
+      <Label layoutX="139.0" layoutY="219.0" text="Paid Amount :-" />
+      <Label layoutX="139.0" layoutY="259.0" text="Balance Amount :-" />
+      <Label fx:id="lblName" layoutX="278.0" layoutY="56.0" text="Label" />
+      <Label fx:id="lblCard" layoutX="278.0" layoutY="97.0" text="Label" />
+      <Label fx:id="lblLastBillDate" layoutX="278.0" layoutY="135.0" text="Label" />
+      <TextField fx:id="txtBalanceAmount" layoutX="278.0" layoutY="175.0" />
+      <TextField fx:id="txtPaidAmount" layoutX="278.0" layoutY="215.0" onKeyReleased="#keyPressActions" />
+      <Label fx:id="lblBalanceAmount" layoutX="278.0" layoutY="259.0" textFill="#ea0505" />
+      <Button fx:id="btnPayBill" layoutX="139.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Pay balance bill" onAction="#handleButtonAction" />
+      <Button fx:id="btnCancleBill" layoutX="329.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Cancle" onAction="#handleButtonAction"/>
+      <Label fx:id="lblErrBalanceAmount" layoutX="434.0" layoutY="179.0" textFill="#ea0505" />
+      <Label fx:id="lblErrPaidAmount" layoutX="434.0" layoutY="219.0" textFill="#ea0505" />
+   </children>
+</AnchorPane>

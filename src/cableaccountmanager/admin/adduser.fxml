@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="392.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cableaccountmanager.admin.AddUserController">
+   <children>
+      <Text layoutX="223.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Users">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="91.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="91.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="93.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="89.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="89.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Type">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtUserName" layoutX="243.0" layoutY="72.0" promptText="Enter User Name" />
+      <TextField fx:id="txtContactNumber" layoutX="243.0" layoutY="218.0" promptText="Enter contact number" />
+      <ComboBox fx:id="cbUserType" layoutX="243.0" layoutY="278.0" prefWidth="150.0" promptText="Select user type" />
+      <PasswordField fx:id="txtPassword" layoutX="244.0" layoutY="120.0" promptText="Enter the password" />
+      <PasswordField fx:id="txtConfirmPassword" layoutX="244.0" layoutY="163.0" promptText="Confirm password" />
+      <Button fx:id="btnAddUser" layoutX="140.0" layoutY="331.0" mnemonicParsing="false" onAction="#ButtonActionHandler" text="Add User" />
+      <Button fx:id="btnClose" layoutX="366.0" layoutY="331.0" mnemonicParsing="false" onAction="#ButtonActionHandler" text="Close" />
+      <Text fx:id="txtErrUserName" fill="#ea0505" layoutX="411.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="txtErrPassword" fill="#ea0505" layoutX="411.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="txtErrConfirmPassword" fill="#ea0505" layoutX="411.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="txtErrContactNumber" fill="#ea0505" layoutX="411.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="txtErrUserType" fill="#ea0505" layoutX="411.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>

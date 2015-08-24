@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="434.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cableaccountmanager.admin.AdminMainWindowController">
+   <children>
+      <TabPane prefHeight="434.0" prefWidth="699.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Add User ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tblUserDetailsTab1" layoutX="15.0" layoutY="25.0" onMouseClicked="#handleMouseEvent" prefHeight="282.0" prefWidth="669.0">
+                          <columns>
+                            <TableColumn fx:id="clmSrNoTab1" prefWidth="52.0" text="Sr.No." />
+                            <TableColumn fx:id="clmUserNameTab1" prefWidth="232.0" text="User Name" />
+                              <TableColumn fx:id="clmContactNoTab1" prefWidth="222.0" text="Contact Number" />
+                              <TableColumn fx:id="clmRollTab1" prefWidth="162.0" text="Roll" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnAddUserTab1" layoutX="15.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="95.0" text="Add new user" />
+                        <Button fx:id="btnRemoveUserTab1" layoutX="154.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="95.0" text="Remove User" />
+                        <Label fx:id="lblMsgFieldTab1" layoutX="322.0" layoutY="339.0" prefHeight="17.0" prefWidth="363.0" textFill="#f20f0f" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Payment Status">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtCardTab2" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter the card number" />
+                        <ComboBox fx:id="cbAreaTab2" layoutX="235.0" layoutY="14.0" prefHeight="25.0" prefWidth="236.0" promptText="Select the area" />
+                        <ComboBox fx:id="cbBillStatusTab2" layoutX="499.0" layoutY="14.0" prefHeight="25.0" prefWidth="182.0" promptText="Select bill status" />
+                        <DatePicker fx:id="dpDate1Tab2" layoutX="14.0" layoutY="56.0" prefHeight="25.0" prefWidth="199.0" promptText="Enter the date" />
+                        <DatePicker fx:id="dpDate2Tab2" layoutX="253.0" layoutY="56.0" prefHeight="25.0" prefWidth="199.0" promptText="Enter the date" />
+                        <Text layoutX="227.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+                        <Button fx:id="btnSearchTab2" layoutX="493.0" layoutY="56.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Search" />
+                        <Button fx:id="btnResetTab2" layoutX="600.0" layoutY="56.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Reset" />
+                        <TableView fx:id="tblPaymentStatusTab2" layoutX="14.0" layoutY="94.0" prefHeight="263.0" prefWidth="667.0">
+                          <columns>
+                            <TableColumn fx:id="clmSrNoTab2" prefWidth="40.0" text="Sr.No." />
+                            <TableColumn fx:id="clmCardTab2" prefWidth="110.0" text="Card Number" />
+                              <TableColumn fx:id="clmUserTab2" prefWidth="144.0" text="User Name" />
+                              <TableColumn fx:id="clmAreaTab2" prefWidth="113.0" text="Area" />
+                              <TableColumn fx:id="tblBillAmountTab2" prefWidth="81.0" text="Bill Amount" />
+                              <TableColumn fx:id="clmPaidAmountTab2" prefWidth="86.0" text="Paid Amount" />
+                              <TableColumn fx:id="clmDateTab2" prefWidth="92.0" text="Date" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnRemoveTab2" layoutX="14.0" layoutY="366.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Remove" />
+                        <Label fx:id="lblMsgFieldTab2" layoutX="185.0" layoutY="370.0" prefHeight="17.0" prefWidth="498.0" text="Error/Message Filed" textFill="#f20f0f" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Connection Details">
+              <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtCardTab3" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="178.0" promptText="Enter Card Number" />
+                        <ComboBox fx:id="cbAreaTab3" layoutX="212.0" layoutY="14.0" prefHeight="25.0" prefWidth="201.0" promptText="Select Area" />
+                        <Button fx:id="btnSearchTab3" layoutX="431.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="116.0" text="Search" />
+                        <Button fx:id="btnResetTab3" layoutX="556.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="116.0" text="Reset" />
+                        <TableView fx:id="tblConnectionsDetailsTab3" layoutX="7.0" layoutY="58.0" prefHeight="294.0" prefWidth="684.0">
+                          <columns>
+                                <TableColumn fx:id="clmSrNoTab3" prefWidth="40.0" text="Sr.No." />
+                                <TableColumn fx:id="clmCardNumberTab3" prefWidth="115.0" text="Card No." />
+                                <TableColumn fx:id="clmNameTab3" prefWidth="179.0" text="Name" />
+                                <TableColumn fx:id="clmAddressTab3" prefWidth="196.0" text="Address" />
+                                <TableColumn fx:id="clmAreaTab3" prefWidth="193.0" text="Area" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnShowDetailsTab3" layoutX="151.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="125.0" text="Show Details" />
+                        <Button fx:id="btnRemoveConnectionTab3" layoutX="7.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleButtonActions" text="Remove Connection" />
+                        <Label fx:id="lblMsgFieldTab3" layoutX="316.0" layoutY="367.0" prefHeight="17.0" prefWidth="375.0" text="Error/Message Filed" textFill="#f20f0f" />
+                     </children></AnchorPane>
+            </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

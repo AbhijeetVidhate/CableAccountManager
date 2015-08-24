@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cableaccountmanager.LoginWindowController">
+    <children>
+      <AnchorPane fx:id="anchorPane" layoutX="-1.0" prefHeight="281.0" prefWidth="404.0">
+         <children>
+            <Text layoutX="64.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="287.728515625">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Text layoutX="67.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="64.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField id="txtUserName" fx:id="txtUserName" layoutX="156.0" layoutY="90.0" promptText="User Name" />
+            <PasswordField id="txtPassword" fx:id="txtPassword" layoutX="156.0" layoutY="138.0" promptText="Password" />
+            <Button id="btnLogin" fx:id="btnLogin" layoutX="95.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleLoginButton" text="Login">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button id="btnExit" fx:id="btnExit" layoutX="245.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="30.0" prefWidth="55.0" text="Exit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Text id="lblError" fx:id="txtError" fill="#e80404" layoutX="202.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="196.13671875" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

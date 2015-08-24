@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="434.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cableaccountmanager.user.ClientMainWindowController">
+    <children>
+      <TabPane prefHeight="434.0" prefWidth="699.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Add New Connections">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="189.0" layoutY="38.0" text="Name" />
+                        <Label layoutX="189.0" layoutY="79.0" text="Area" />
+                        <Label layoutX="189.0" layoutY="122.0" text="Address" />
+                        <Label layoutX="189.0" layoutY="266.0" text="Card Number" />
+                        <Label layoutX="189.0" layoutY="210.0" text="Contact Number" />
+                        <TextField fx:id="txtNameTab1" layoutX="295.0" layoutY="34.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter name " />
+                        <TextArea fx:id="txtAddressTab1" layoutX="295.0" layoutY="111.0" prefHeight="73.0" prefWidth="187.0" promptText="Enter full address" />
+                        <TextField fx:id="txtContactTab1" layoutX="295.0" layoutY="206.0" prefHeight="25.0" prefWidth="187.0" promptText="Enter contact number" />
+                        <TextField fx:id="txtCardTab1" layoutX="295.0" layoutY="262.0" prefHeight="25.0" prefWidth="187.0" />
+                        <ComboBox fx:id="cbAreaTab1" layoutX="295.0" layoutY="75.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="186.0" promptText="Select area" />
+                        <Button fx:id="btnAddTab1" layoutX="189.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="77.0" text="Add" />
+                        <Button fx:id="btnResetTab1" layoutX="404.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="77.0" text="Reset" />
+                        <Label fx:id="lblErrNameTab1" layoutX="492.0" layoutY="38.0" textFill="#ea0505" />
+                        <Label fx:id="lblErrAreaTab1" layoutX="492.0" layoutY="79.0" textFill="#ea0505" />
+                        <Label fx:id="lblErrAddressTab1" layoutX="492.0" layoutY="122.0" textFill="#ea0505" />
+                        <Label fx:id="lblErrContactTab1" layoutX="492.0" layoutY="210.0" textFill="#ea0505" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Pay Bills">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtCardTab2" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="178.0" promptText="Enter card number" />
+                        <ComboBox fx:id="cbAreaTab2" layoutX="212.0" layoutY="14.0" prefHeight="25.0" prefWidth="201.0" promptText="Select area" />
+                        <Button fx:id="btnSearchTab2" layoutX="431.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="116.0" text="Search" />
+                        <TableView fx:id="tblConnectionsDetailsTab2" layoutX="14.0" layoutY="50.0" prefHeight="312.0" prefWidth="677.0">
+                          <columns>
+                            <TableColumn fx:id="clmSrNoTab2" prefWidth="75.0" text="Sr. No." />
+                            <TableColumn fx:id="clmCardTab2" prefWidth="94.0" text="Card No." />
+                              <TableColumn fx:id="clmNameTab2" prefWidth="186.0" text="Name" />
+                              <TableColumn fx:id="clmAreaTab2" prefWidth="201.0" text="Area" />
+                              <TableColumn fx:id="clmContactTab2" prefWidth="119.0" text="Contact No." />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnPayBillTab2" layoutX="479.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="213.0" text="Pay bill" />
+                        <Button fx:id="btnResetTab2" layoutX="556.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="116.0" text="Reset" />
+                        <Label fx:id="lblMsgTab2" layoutX="14.0" layoutY="370.0" prefHeight="17.0" prefWidth="291.0" textFill="#ea0505" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Pay Balance Bills">
+              <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtCardTab3" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="178.0" promptText="Enter card number" />
+                        <ComboBox fx:id="cbAreaTab3" layoutX="215.0" layoutY="14.0" prefHeight="25.0" prefWidth="201.0" promptText="Select area" />
+                        <Button fx:id="btnSearchTab3" layoutX="440.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="116.0" text="Search" />
+                        <TableView fx:id="tblConnectionsDetailsTab3" layoutX="14.0" layoutY="50.0" prefHeight="312.0" prefWidth="677.0">
+                          <columns>
+                            <TableColumn fx:id="clmSrNoTab3" prefWidth="44.0" text="Sr. No." />
+                            <TableColumn fx:id="clmCardTab3" prefWidth="85.0" text="Card No." />
+                              <TableColumn fx:id="clmNameTab3" prefWidth="178.0" text="Name" />
+                              <TableColumn fx:id="clmAreaTab3" prefWidth="163.0" text="Area" />
+                              <TableColumn fx:id="clmBalanceAmountTab3" prefWidth="107.0" text="Balance Amount" />
+                              <TableColumn fx:id="clmDateTab3" prefWidth="99.0" text="Date" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnPayBalBillTab3" layoutX="479.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="213.0" text="Pay balance bill" />
+                        <Label fx:id="lblMsgTab3" layoutX="14.0" layoutY="370.0" prefHeight="17.0" prefWidth="291.0" textFill="#ea0505" />
+                        <Button fx:id="btnResetTab3" layoutX="575.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="116.0" text="Reset" />
+                        <Label fx:id="lblMsgTab3" layoutX="14.0" layoutY="370.0" prefHeight="17.0" prefWidth="319.0" textFill="#ea0505" />
+                     </children></AnchorPane>
+            </content>
+              
+          </Tab>  
+        </tabs>
+      </TabPane>
+    </children>
+</AnchorPane>
