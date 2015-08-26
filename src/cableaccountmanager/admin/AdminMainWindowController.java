@@ -14,6 +14,7 @@ import cableaccountmanager.dba.CentralRepository;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -138,9 +139,28 @@ public class AdminMainWindowController implements Initializable {
             }else if(actionEvent.getSource().equals(btnShowDetailsTab3))
             {
                 ConnectionBeans connectionBeans = tblConnectionsDetailsTab3.getSelectionModel().getSelectedItem();
+                //int seletedIndex = tblConnectionsDetailsTab3.getSelectionModel().getSelectedIndex();
                 if(connectionBeans != null){
                     if(showUserDetailWindow(connectionBeans)){
                         lblMsgFieldTab3.setText("Connection removed successfully....!");
+                        ObservableList<ConnectionBeans> list = tblConnectionsDetailsTab3.getItems();
+                        list.remove(connectionBeans);
+                        tblConnectionsDetailsTab3.setItems(list);
+                    }else{
+                        lblMsgFieldTab3.setText("Connection remove failed....!");
+                    }
+                }else{
+                    lblMsgFieldTab3.setText("Please select the connection....!");
+                }
+            }else if(actionEvent.equals(btnRemoveConnectionTab3)){
+                ConnectionBeans connectionBeans = tblConnectionsDetailsTab3.getSelectionModel().getSelectedItem();
+                
+                if(connectionBeans != null){
+                    if(new ConnectionBeansActions().removeConnectionBills(connectionBeans)){
+                        lblMsgFieldTab3.setText("Connection removed successfully....!");
+                        ObservableList<ConnectionBeans> list = tblConnectionsDetailsTab3.getItems();
+                        list.remove(connectionBeans);
+                        tblConnectionsDetailsTab3.setItems(list);
                     }else{
                         lblMsgFieldTab3.setText("Connection remove failed....!");
                     }
