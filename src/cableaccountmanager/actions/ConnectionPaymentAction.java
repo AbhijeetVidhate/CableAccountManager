@@ -9,6 +9,7 @@ import cableaccountmanager.beans.ConnectionPaymentBeans;
 import cableaccountmanager.dba.DBConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -106,7 +107,7 @@ public class ConnectionPaymentAction {
                    System.err.println("Connection is null");
                }
                return list;
-        } catch (Exception e) {
+        } catch (SQLException | NumberFormatException e) {
             System.err.println(exceptionString+e.getMessage());
             //e.printStackTrace();
             return null;
