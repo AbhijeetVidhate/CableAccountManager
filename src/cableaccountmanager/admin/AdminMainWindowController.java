@@ -139,7 +139,11 @@ public class AdminMainWindowController implements Initializable {
             {
                 ConnectionBeans connectionBeans = tblConnectionsDetailsTab3.getSelectionModel().getSelectedItem();
                 if(connectionBeans != null){
-                    showUserDetailWindow(connectionBeans);
+                    if(showUserDetailWindow(connectionBeans)){
+                        lblMsgFieldTab3.setText("Connection removed successfully....!");
+                    }else{
+                        lblMsgFieldTab3.setText("Connection remove failed....!");
+                    }
                 }else{
                     lblMsgFieldTab3.setText("Please select the connection....!");
                 }
@@ -202,7 +206,7 @@ public class AdminMainWindowController implements Initializable {
                     Scene scene = new Scene(page);
                     dialogStage.setScene(scene);
 
-                // Set the person into the controller
+                // Set the AddUser into the controller
                     AddUserController addUserController = loader.getController();
             
                 // Show the dialog and wait until the user closes it
@@ -230,7 +234,7 @@ public class AdminMainWindowController implements Initializable {
                     Scene scene = new Scene(page);
                     dialogStage.setScene(scene);
 
-                // Set the person into the controller
+                // Set the connectiondetails into the controller
                     ConnectionDetailsController connectionDetailsController = loader.getController();
                     connectionDetailsController.setConnectionBeans(connectionBeans);
                     connectionDetailsController.setDialogStage(dialogStage);
@@ -243,6 +247,7 @@ public class AdminMainWindowController implements Initializable {
                     return connectionDetailsController.isClose();
             
         }catch(Exception ex){
+            System.err.println(ex.getMessage());
             return false;
         }
     }

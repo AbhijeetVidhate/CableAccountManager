@@ -78,7 +78,7 @@
                         </TableView>
                         <Button fx:id="btnShowDetailsTab3" layoutX="151.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="125.0" text="Show Details" />
                         <Button fx:id="btnRemoveConnectionTab3" layoutX="7.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleButtonActions" text="Remove Connection" />
-                        <Label fx:id="lblMsgFieldTab3" layoutX="316.0" layoutY="367.0" prefHeight="17.0" prefWidth="375.0" text="Error/Message Filed" textFill="#f20f0f" />
+                        <Label fx:id="lblMsgFieldTab3" layoutX="316.0" layoutY="367.0" prefHeight="17.0" prefWidth="375.0" textFill="#f20f0f" />
                      </children></AnchorPane>
             </content>
             </Tab>

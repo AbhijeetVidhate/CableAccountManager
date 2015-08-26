@@ -6,6 +6,7 @@
 package cableaccountmanager.actions;
 
 import cableaccountmanager.beans.ConnectionBeans;
+import cableaccountmanager.beans.PaymentBeans;
 import cableaccountmanager.dba.DBConnection;
 import cableaccountmanager.user.ClientMainWindowController;
 import java.sql.PreparedStatement;
@@ -233,7 +234,7 @@ public class ConnectionBeansActions
     }
         
         
-    //this method update the connections by key
+    //this method update the connections by key and value
     public boolean updateConnection(int id,String key,String value){
         boolean isUpdate = false;
         String query = "update "+TABLE_NAME+" set"
@@ -308,4 +309,38 @@ public class ConnectionBeansActions
         }
         return newCard;
     }
+    
+    //this method delete whole bill record of connection
+    public boolean removeConnectionBills(ConnectionBeans connectionBeans){
+        boolean isRemoved = false;
+        PaymentBeans paymentBeans = new PaymentBeans();
+        paymentBeans.setCardNumber(connectionBeans.getCard());
+        
+        if(new PaymentBeansActions().removeBillRecord(paymentBeans)){
+            String query = "delete from "+TABLE_NAME+" where "+COLUMN_ID+"=?";
+            try{
+                connection = new DBConnection();
+                if(connection.getConnection() != null){
+                    prepareStatement = connection.getConnection().prepareStatement(query);
+                    if(prepareStatement != null){
+                        prepareStatement.setInt(1,connectionBeans.getId());
+                        
+                        isRemoved = (prepareStatement.executeUpdate()>0);
+                    }else{
+                        System.err.println(errorString+"PrepareStatement is null");
+                    }
+                }else{
+                    System.err.println(errorString+"Connection is null");
+                }
+            }catch(SQLException se){
+                System.err.println(exceptionString+se.getMessage());
+            }finally{
+            
+            }
+        }
+           
+        return isRemoved;
+    }
+    
+    
 }

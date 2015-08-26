@@ -259,22 +259,38 @@ public class PaymentBeansActions
         return isUpdate;
     }
     
-    
-    //this method delete whole bill record of connection
-    public void removeConnectionBills(ConnectionBeans connectionBeans){
-        String query = "delete from tbluserbill where "+COLUMN_CARD+"=?";
+    //this method removes all bill record by cardnumber only calling when connection is removed
+    public boolean removeBillRecord(PaymentBeans paymentBeans){
+        boolean isRemove = false;
+        String query = "delete from "+TABLE_NAME+" where "+COLUMN_CARD+"=?";
         
         try {
             connection = new DBConnection();
             if(connection.getConnection() != null){
-                
+                prepareStatement = connection.getConnection().prepareStatement(query);
+                if(prepareStatement != null){
+                    prepareStatement.setString(1, paymentBeans.getCardNumber());
+                    isRemove = (prepareStatement.executeUpdate()>0);
+                }else{
+                    System.err.println(errorString+"PrepareStatement is null");
+                }
             }else{
                 System.err.println(errorString+"Connection is null");
             }
         } catch (Exception e) {
             System.err.println(exceptionString+""+e.getMessage());
         }finally{
-        
+            try{
+                prepareStatement.close();
+            }catch(SQLException se){
+                System.err.println(exceptionString+se.getMessage());
+            }try{
+                connection.close();
+            }catch(SQLException se){
+                System.out.println(exceptionString+se.getMessage());
+            }
         }
+        return  isRemove;
     }
+    
 }

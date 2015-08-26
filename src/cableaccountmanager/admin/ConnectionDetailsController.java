@@ -119,7 +119,10 @@ public class ConnectionDetailsController implements Initializable{
                 tblUserBills.setItems(new PaymentBeansActions().getConnectionBillRecord(connectionBeans, startingDate, endingDate));
                 
             }else if(actionEvent.getSource().equals(btnRemove)){
-            
+                if(connectionBeans != null){
+                    isClose = new ConnectionBeansActions().removeConnectionBills(connectionBeans);
+                    dialogStage.close();
+                }
             }
         }
     //class content
