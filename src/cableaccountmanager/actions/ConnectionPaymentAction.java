@@ -183,7 +183,7 @@ public class ConnectionPaymentAction {
                    
                                            
                 }
-                System.out.println(""+query);
+                //System.out.println(""+query);
             //crate db connection and excute query
                 try {
                     connection = new DBConnection();
