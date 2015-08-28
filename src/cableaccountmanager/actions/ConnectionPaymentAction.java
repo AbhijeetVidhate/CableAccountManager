@@ -57,7 +57,8 @@ public class ConnectionPaymentAction {
                     +TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_AREA+","
                     +TBLUSERBILL_TABLE_NAME+".* from "+TBLCONDETAILS_TABLE_NAME+" JOIN "
                     +TBLUSERBILL_TABLE_NAME+" on ("+TBLCONDETAILS_TABLE_NAME+"."
-                    +TBLCONDETAILS_COLUMN_CARD+"="+TBLUSERBILL_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_CARD+") where ";
+                    +TBLCONDETAILS_COLUMN_CARD+"="+TBLUSERBILL_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_CARD+") where "
+                    +TBLUSERBILL_TABLE_NAME+"."+TBLUSERBILL_COLUMN_BALANCEAMOUNT+">0 AND ";
             
             int noOfConditionAdded = 1; 
             if(connectionPaymentBeans.getCardNumber().isEmpty() != true){
@@ -106,13 +107,12 @@ public class ConnectionPaymentAction {
                }else{
                    System.err.println("Connection is null");
                }
-               return list;
-        } catch (SQLException | NumberFormatException e) {
+               
+            } catch (SQLException | NumberFormatException e) {
             System.err.println(exceptionString+e.getMessage());
             //e.printStackTrace();
-            return null;
-        }
-        
+            }
+            return list;
         }
     
     

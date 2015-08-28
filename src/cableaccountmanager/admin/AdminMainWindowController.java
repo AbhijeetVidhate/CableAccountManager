@@ -134,6 +134,9 @@ public class AdminMainWindowController implements Initializable {
                                     connectionBeans.setCard(txtCardTab3.getText());
                                     connectionBeans.setArea(cbAreaTab3.getSelectionModel().getSelectedItem());
                                     tblConnectionsDetailsTab3.setItems(new ConnectionBeansActions().getConnectionDetails(connectionBeans, 2));
+                }else if(txtCardTab3.getText().equals("") && 
+                        cbAreaTab3.getSelectionModel().getSelectedItem() == null){
+                    lblMsgFieldTab3.setText("Please enter card number or select the area...!");
                 }
             }else if(actionEvent.getSource().equals(btnResetTab3)){
                 resetFields(btnResetTab3);
