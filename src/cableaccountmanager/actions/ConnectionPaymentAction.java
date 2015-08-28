@@ -5,6 +5,7 @@
  */
 package cableaccountmanager.actions;
 
+import cableaccountmanager.beans.AdminBeans;
 import cableaccountmanager.beans.ConnectionPaymentBeans;
 import cableaccountmanager.dba.DBConnection;
 import java.sql.PreparedStatement;
@@ -113,8 +114,16 @@ public class ConnectionPaymentAction {
             //e.printStackTrace();
             }
             return list;
+}
+        
+        
+//this method return the all bill records using conditions
+        public ObservableList<ConnectionPaymentBeans> getUserBillRecords(AdminBeans beans){
+            
+            
+            
+        return null;
         }
-    
     
         
 }

@@ -17,7 +17,9 @@ public class ConnectionPaymentBeans {
     private StringProperty name,address,contact,area,sr_no;
     private int id,paidAmount,billAmount,balanceAmount;
     private StringProperty cardNumber,billDate,balanceDate;
-
+    
+    
+    
     public int getId() {
         return id;
     }
