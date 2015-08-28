@@ -175,33 +175,46 @@ public class AdminMainWindowController implements Initializable {
                     lblMsgFieldTab3.setText("Please select the connection....!");
                 }
             }else if(actionEvent.getSource().equals(btnSearchTab2)){
+                
+                int noObject = 0;
                 AdminBeans adminBeans = new AdminBeans();
                 
-                
-                adminBeans.setCardNumber(txtCardTab2.getText());
-                
-                    if(cbAreaTab2.getSelectionModel().getSelectedItem() != null)
+                    if(txtCardTab2.getText().equals("null")){
+                        adminBeans.setCardNumber(txtCardTab2.getText());
+                        ++noObject;
+                    }
+                    else
+                        adminBeans.setCardNumber("");
+                              
+                    if(cbAreaTab2.getSelectionModel().getSelectedItem() != null){
                         adminBeans.setArea(cbAreaTab2.getSelectionModel().getSelectedItem());
+                        ++noObject;
+                    }
                     else
                         adminBeans.setArea("");
-                    if(cbBillStatusTab2.getSelectionModel().getSelectedItem() != null)
+                    
+                    if(cbBillStatusTab2.getSelectionModel().getSelectedItem() != null){
                         adminBeans.setBillStatus(cbAreaTab2.getSelectionModel().getSelectedItem());
+                        ++noObject;
+                    }
                     else
                         adminBeans.setBillStatus("");
                 
                 try{
                     adminBeans.setDate1(dpDate1Tab2.getValue().toString());
+                    ++noObject;
                 }catch(NullPointerException nullEx){
                     adminBeans.setDate1("");
                 }
                 try{
                     adminBeans.setDate2(dpDate2Tab2.getValue().toString());
+                    ++noObject;
                 }catch(NullPointerException nullEx){
                     adminBeans.setDate2("");
                 }
                 
-                System.out.println(""+adminBeans);
-                tblPaymentStatusTab2.setItems(new ConnectionPaymentAction().getUserBillRecords(adminBeans));
+                System.out.println(""+adminBeans+" No of object:"+noObject);
+                tblPaymentStatusTab2.setItems(new ConnectionPaymentAction().getUserBillRecords(adminBeans,noObject));
                 
                
                 

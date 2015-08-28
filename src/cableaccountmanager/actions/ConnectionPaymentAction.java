@@ -118,7 +118,10 @@ public class ConnectionPaymentAction {
         
         
 //this method return the all bill records using conditions
-        public ObservableList<ConnectionPaymentBeans> getUserBillRecords(AdminBeans beans){
+        public ObservableList<ConnectionPaymentBeans> getUserBillRecords(AdminBeans beans,int noObjectFill){
+            
+            boolean isWhereAdd = false;
+            int noConditionAdded = 1;
             //ObservableList which is return
                 ObservableList<ConnectionPaymentBeans> list = FXCollections.observableArrayList();
             //default query for this methos
@@ -127,7 +130,65 @@ public class ConnectionPaymentAction {
                                 
             
             //create final query for exceution
-            
+                if(!beans.getCardNumber().equals("")){
+                    if(!isWhereAdd){
+                        query = query+" where ";
+                        isWhereAdd = true;
+                    }
+                    query = query+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_CARD+"='"+beans.getCardNumber()+"'";
+                    ++noConditionAdded;                    
+                }
+                if(!beans.getArea().equals("")){
+                    if(!isWhereAdd){
+                        query = query+" where ";
+                        isWhereAdd = true;
+                    }
+                    
+                    if(noConditionAdded>noObjectFill)
+                        query = query+" AND ";
+                    
+                     
+                    if(beans.getArea().equalsIgnoreCase("all"))
+                        query = query+"";
+                    else
+                        query = query+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_AREA+"='"+beans.getArea()+"'";
+                    ++noConditionAdded;
+                   
+                }
+                if(!beans.getBillStatus().equals("")){
+                    if(!isWhereAdd){
+                        query = query+" where ";
+                        isWhereAdd = true;
+                    }
+                    
+                    if(noConditionAdded>noObjectFill)
+                        query = query+" AND ";
+                    
+                    
+                    if(beans.getArea().equalsIgnoreCase("all"))
+                        query = query+"";
+                    else
+                        query = query+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_CARD+"='"+beans.getArea();
+                    ++noConditionAdded;
+                    
+                }
+                if(!beans.getDate1().equals("")){
+                    if(!isWhereAdd)
+                        query = query+" where ";
+                    
+                    if(noConditionAdded>noObjectFill)                        
+                        query = query+" AND ";
+                     
+                    if(!beans.getDate1().equals("") && beans.getDate2().equals(""))
+                        query = query+TBLUSERBILL_TABLE_NAME+"."+TBLUSERBILL_COLUMN_BILLDATE+"='"+beans.getDate1()+"'";
+                    else if(!beans.getDate1().equals("") && !beans.getDate2().equals(""))
+                        query = query+TBLUSERBILL_TABLE_NAME+"."+TBLUSERBILL_COLUMN_BILLDATE+" between '"+beans.getDate1()+"' AND "
+                                +" '"+beans.getDate2()+"'";
+                    
+                    ++noConditionAdded;
+                                           
+                }
+                System.out.println(""+query);
             //crate db connection and excute query
                 try {
                     connection = new DBConnection();
@@ -160,7 +221,7 @@ public class ConnectionPaymentAction {
                     }else{
                         System.err.println(errorString+"Connection is null");
                     }
-                } catch (Exception e) {
+                } catch (ClassNotFoundException | SQLException e) {
                     System.err.println(exceptionString+e.getMessage());
                 }
             
