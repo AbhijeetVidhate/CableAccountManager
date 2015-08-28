@@ -81,7 +81,7 @@ public class PaymentBeansActions
                 }else{
                     System.err.println(errorString+"Connection not establish");
                 }   
-            }catch(Exception ex){
+            }catch(ClassNotFoundException | SQLException ex){
                 System.err.println(exceptionString);
                 //ex.printStackTrace();
             }finally{
@@ -126,7 +126,7 @@ public class PaymentBeansActions
             }else{
                 System.err.println(errorString+"Connection is not establish");
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString+e.getMessage());
         }finally{
             try{
@@ -165,8 +165,9 @@ public class PaymentBeansActions
         
         //System.out.println(query);
         
-        connection = new DBConnection();
+        
         try {
+            connection = new DBConnection();
             if(connection.getConnection() != null){
                 prepareStatement = connection.getConnection().prepareStatement(query);
                 if(prepareStatement != null){
@@ -192,7 +193,7 @@ public class PaymentBeansActions
             }else{
                 System.err.println(errorString+"Connection not establish");
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString+e.getMessage());
             //e.printStackTrace();
         }finally{
@@ -240,7 +241,7 @@ public class PaymentBeansActions
             }else{
                 System.err.println(errorString+"Connection is null");
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString+e.getMessage());
         }finally{
             try{
@@ -277,7 +278,7 @@ public class PaymentBeansActions
             }else{
                 System.err.println(errorString+"Connection is null");
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString+""+e.getMessage());
         }finally{
             try{

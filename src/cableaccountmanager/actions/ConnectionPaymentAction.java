@@ -109,7 +109,7 @@ public class ConnectionPaymentAction {
                    System.err.println("Connection is null");
                }
                
-            } catch (SQLException | NumberFormatException e) {
+            } catch (SQLException | NumberFormatException | ClassNotFoundException e) {
             System.err.println(exceptionString+e.getMessage());
             //e.printStackTrace();
             }

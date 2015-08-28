@@ -71,7 +71,7 @@ public class ConnectionBeansActions
                 }else
                     System.err.println(errorString+"Connection not establish");
                 
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString+e.getMessage());
         }finally{
                 try {
@@ -115,7 +115,7 @@ public class ConnectionBeansActions
                 }else{
                     System.err.println(errorString+"Connection not establish");
                 }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString+e.getMessage());
         }finally{
             try{
@@ -210,7 +210,7 @@ public class ConnectionBeansActions
             }else{
                 System.err.println(errorString+"Connection is not establish");
             }
-        } catch (Exception e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.err.println(exceptionString +e.getMessage());
         }finally{
             try {
@@ -254,7 +254,7 @@ public class ConnectionBeansActions
             }else{
                 System.err.println(errorString+"Connection is not establish");
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString +e.getMessage());
         }finally{
             try {
@@ -292,7 +292,7 @@ public class ConnectionBeansActions
             }else{
                 System.err.println(errorString+"Connection is not establish");
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.err.println(exceptionString +e.getMessage());
         }finally{
             try {
@@ -332,13 +332,22 @@ public class ConnectionBeansActions
                 }else{
                     System.err.println(errorString+"Connection is null");
                 }
-            }catch(SQLException se){
+            }catch(SQLException | ClassNotFoundException se){
                 System.err.println(exceptionString+se.getMessage());
             }finally{
-            
+                try {
+                        if(prepareStatement != null)
+                        prepareStatement.close();
+                } catch (SQLException e) {
+                        System.err.println(exceptionString +e.getMessage());
+                }try {
+                        if(connection.getConnection() != null)
+                        connection.close();
+                } catch (SQLException e) {
+                        System.err.println(exceptionString +e.getMessage());
+                }
             }
         }
-           
         return isRemoved;
     }
     

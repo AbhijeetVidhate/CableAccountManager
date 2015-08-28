@@ -23,17 +23,15 @@ public class DBConnection
     
     private Connection connection;
     
-    public DBConnection(){
-        try{
+    public DBConnection()throws ClassNotFoundException,SQLException{
+        
             Class.forName(DRIVER_CLASS);
             connection = DriverManager.getConnection(URL+DB_NAME,USERNAME,PASSWORD);
             if(connection == null)
                 System.err.println("DB Connection Unsuccessful");
             /*else
                 System.out.println("DB Connection successful");*/
-        }catch(Exception ex){
-            System.err.println("Exception:- "+ex.getMessage());
-        }
+        
     }
     
     public void close() throws SQLException{
