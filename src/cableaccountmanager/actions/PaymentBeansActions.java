@@ -6,6 +6,7 @@
 package cableaccountmanager.actions;
 
 import cableaccountmanager.beans.ConnectionBeans;
+import cableaccountmanager.beans.ConnectionPaymentBeans;
 import cableaccountmanager.beans.PaymentBeans;
 import cableaccountmanager.dba.DBConnection;
 import java.sql.Date;
@@ -294,4 +295,39 @@ public class PaymentBeansActions
         return  isRemove;
     }
     
+    //this method remove the bill record by its id
+    public boolean removeBillRecord(ConnectionPaymentBeans connectionPaymentBeans) {
+        boolean isRemove = false;
+        
+        String query = "delete from "+TABLE_NAME+" where "+COLUMN_ID+"=?";
+        
+        try {
+            connection = new DBConnection();
+            if(connection.getConnection() != null){
+                prepareStatement = connection.getConnection().prepareStatement(query);
+                if(prepareStatement != null){
+                    prepareStatement.setString(1, paymentBeans.getCardNumber());
+                    isRemove = (prepareStatement.executeUpdate()>0);
+                }else{
+                    System.err.println(errorString+"PrepareStatement is null");
+                }
+            }else{
+                System.err.println(errorString+"Connection is null");
+            }
+                      
+        } catch (ClassNotFoundException |SQLException e) {
+            System.err.println(exceptionString+""+e.getMessage());
+        }finally{
+            try{
+                prepareStatement.close();
+            }catch(SQLException se){
+                System.err.println(exceptionString+se.getMessage());
+            }try{
+                connection.close();
+            }catch(SQLException se){
+                System.out.println(exceptionString+se.getMessage());
+            }
+        }
+        return isRemove;
+    }
 }

@@ -7,6 +7,7 @@ package cableaccountmanager.admin;
 
 import cableaccountmanager.actions.ConnectionBeansActions;
 import cableaccountmanager.actions.ConnectionPaymentAction;
+import cableaccountmanager.actions.PaymentBeansActions;
 import cableaccountmanager.actions.UserBeansActions;
 import cableaccountmanager.beans.AdminBeans;
 import cableaccountmanager.beans.ConnectionBeans;
@@ -216,6 +217,13 @@ public class AdminMainWindowController implements Initializable {
                 tblPaymentStatusTab2.setItems(new ConnectionPaymentAction().getUserBillRecords(adminBeans));
             }else if(actionEvent.getSource().equals(btnResetTab2)){
                 resetFields(btnResetTab2);
+            }else if(actionEvent.getSource().equals(btnRemoveTab2)){
+                ConnectionPaymentBeans connectionPaymentBeans = tblPaymentStatusTab2.getSelectionModel().getSelectedItem();
+                
+                if(new PaymentBeansActions().removeBillRecord(connectionPaymentBeans))
+                    lblMsgFieldTab2.setText("Bill record deleted successfully...!");
+                else
+                    lblMsgFieldTab2.setText("Bill record not deleted...!");
             }
         }
         
@@ -233,8 +241,8 @@ public class AdminMainWindowController implements Initializable {
             txtCardTab2.setText("");
             cbAreaTab2.getSelectionModel().clearSelection();
             cbBillStatusTab2.getSelectionModel().clearSelection();
-            dpDate1Tab2.setValue(LocalDate.MIN);
-            dpDate2Tab2.setValue(LocalDate.MIN);
+            dpDate1Tab2.setValue(null);
+            dpDate2Tab2.setValue(null);
             lblMsgFieldTab2.setText("");
         }else if(btnReset.equals(btnResetTab3)){
             //reseting tab3 fields
