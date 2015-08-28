@@ -152,7 +152,7 @@ public class AdminMainWindowController implements Initializable {
                 }else{
                     lblMsgFieldTab3.setText("Please select the connection....!");
                 }
-            }else if(actionEvent.equals(btnRemoveConnectionTab3)){
+            }else if(actionEvent.getSource().equals(btnRemoveConnectionTab3)){
                 ConnectionBeans connectionBeans = tblConnectionsDetailsTab3.getSelectionModel().getSelectedItem();
                 
                 if(connectionBeans != null){
