@@ -41,7 +41,7 @@
                         <DatePicker fx:id="dpDate2Tab2" layoutX="253.0" layoutY="56.0" prefHeight="25.0" prefWidth="199.0" promptText="Enter the date" />
                         <Text layoutX="227.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
                         <Button fx:id="btnSearchTab2" layoutX="493.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="81.0" text="Search" />
-                        <Button fx:id="btnResetTab2" layoutX="600.0" layoutY="56.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Reset" />
+                        <Button fx:id="btnResetTab2" layoutX="600.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="81.0" text="Reset" />
                         <TableView fx:id="tblPaymentStatusTab2" layoutX="14.0" layoutY="94.0" prefHeight="263.0" prefWidth="667.0">
                           <columns>
                             <TableColumn fx:id="clmSrNoTab2" prefWidth="40.0" text="Sr.No." />

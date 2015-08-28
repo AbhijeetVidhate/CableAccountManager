@@ -17,6 +17,7 @@ import cableaccountmanager.dba.CentralRepository;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -176,48 +177,45 @@ public class AdminMainWindowController implements Initializable {
                 }
             }else if(actionEvent.getSource().equals(btnSearchTab2)){
                 
-                int noObject = 0;
+                
                 AdminBeans adminBeans = new AdminBeans();
                 
-                    if(txtCardTab2.getText().equals("null")){
+                    if(!txtCardTab2.getText().equals("null"))
                         adminBeans.setCardNumber(txtCardTab2.getText());
-                        ++noObject;
-                    }
                     else
                         adminBeans.setCardNumber("");
                               
                     if(cbAreaTab2.getSelectionModel().getSelectedItem() != null){
                         adminBeans.setArea(cbAreaTab2.getSelectionModel().getSelectedItem());
-                        ++noObject;
+                        
                     }
                     else
                         adminBeans.setArea("");
                     
                     if(cbBillStatusTab2.getSelectionModel().getSelectedItem() != null){
-                        adminBeans.setBillStatus(cbAreaTab2.getSelectionModel().getSelectedItem());
-                        ++noObject;
+                        adminBeans.setBillStatus(cbBillStatusTab2.getSelectionModel().getSelectedItem());
+                        
                     }
                     else
                         adminBeans.setBillStatus("");
                 
                 try{
                     adminBeans.setDate1(dpDate1Tab2.getValue().toString());
-                    ++noObject;
+                    
                 }catch(NullPointerException nullEx){
                     adminBeans.setDate1("");
                 }
                 try{
                     adminBeans.setDate2(dpDate2Tab2.getValue().toString());
-                    ++noObject;
+                    
                 }catch(NullPointerException nullEx){
                     adminBeans.setDate2("");
                 }
                 
-                System.out.println(""+adminBeans+" No of object:"+noObject);
-                tblPaymentStatusTab2.setItems(new ConnectionPaymentAction().getUserBillRecords(adminBeans,noObject));
                 
-               
-                
+                tblPaymentStatusTab2.setItems(new ConnectionPaymentAction().getUserBillRecords(adminBeans));
+            }else if(actionEvent.getSource().equals(btnResetTab2)){
+                resetFields(btnResetTab2);
             }
         }
         
@@ -231,7 +229,13 @@ public class AdminMainWindowController implements Initializable {
     //reset all fields in window
     private void resetFields(Button btnReset){
         if(btnReset.equals(btnResetTab2)){
-            //
+            //reseting tab2 fields
+            txtCardTab2.setText("");
+            cbAreaTab2.getSelectionModel().clearSelection();
+            cbBillStatusTab2.getSelectionModel().clearSelection();
+            dpDate1Tab2.setValue(LocalDate.MIN);
+            dpDate2Tab2.setValue(LocalDate.MIN);
+            lblMsgFieldTab2.setText("");
         }else if(btnReset.equals(btnResetTab3)){
             //reseting tab3 fields
             txtCardTab3.setText("");

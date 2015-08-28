@@ -118,10 +118,10 @@ public class ConnectionPaymentAction {
         
         
 //this method return the all bill records using conditions
-        public ObservableList<ConnectionPaymentBeans> getUserBillRecords(AdminBeans beans,int noObjectFill){
+        public ObservableList<ConnectionPaymentBeans> getUserBillRecords(AdminBeans beans){
             
             boolean isWhereAdd = false;
-            int noConditionAdded = 1;
+            
             //ObservableList which is return
                 ObservableList<ConnectionPaymentBeans> list = FXCollections.observableArrayList();
             //default query for this methos
@@ -136,47 +136,42 @@ public class ConnectionPaymentAction {
                         isWhereAdd = true;
                     }
                     query = query+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_CARD+"='"+beans.getCardNumber()+"'";
-                    ++noConditionAdded;                    
+                                   
                 }
                 if(!beans.getArea().equals("")){
                     if(!isWhereAdd){
                         query = query+" where ";
                         isWhereAdd = true;
+                    }                  
+                    else {
+                        if(beans.getArea().equalsIgnoreCase("all"))
+                            query = query+"";
+                        else
+                            query = query+" AND ";
+                            
                     }
-                    
-                    if(noConditionAdded>noObjectFill)
-                        query = query+" AND ";
-                    
-                     
-                    if(beans.getArea().equalsIgnoreCase("all"))
-                        query = query+"";
-                    else
-                        query = query+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_AREA+"='"+beans.getArea()+"'";
-                    ++noConditionAdded;
-                   
+                    query = query+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_AREA+"='"+beans.getArea()+"'";
                 }
                 if(!beans.getBillStatus().equals("")){
                     if(!isWhereAdd){
                         query = query+" where ";
                         isWhereAdd = true;
+                    }else{ 
+                        if(beans.getBillStatus().equalsIgnoreCase("all"))
+                            query = query+"";
+                        else
+                            query = query+" AND ";  
                     }
-                    
-                    if(noConditionAdded>noObjectFill)
-                        query = query+" AND ";
-                    
-                    
-                    if(beans.getArea().equalsIgnoreCase("all"))
-                        query = query+"";
-                    else
-                        query = query+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_CARD+"='"+beans.getArea();
-                    ++noConditionAdded;
-                    
+                    if(beans.getBillStatus().equalsIgnoreCase("paid"))
+                            query = query+TBLUSERBILL_TABLE_NAME+"."+TBLUSERBILL_COLUMN_BALANCEAMOUNT+"=0";
+                    else if(beans.getBillStatus().equalsIgnoreCase("balance"))
+                            query = query+TBLUSERBILL_TABLE_NAME+"."+TBLUSERBILL_COLUMN_BALANCEAMOUNT+">0";
+                        
                 }
                 if(!beans.getDate1().equals("")){
                     if(!isWhereAdd)
                         query = query+" where ";
-                    
-                    if(noConditionAdded>noObjectFill)                        
+                    else                         
                         query = query+" AND ";
                      
                     if(!beans.getDate1().equals("") && beans.getDate2().equals(""))
@@ -185,7 +180,7 @@ public class ConnectionPaymentAction {
                         query = query+TBLUSERBILL_TABLE_NAME+"."+TBLUSERBILL_COLUMN_BILLDATE+" between '"+beans.getDate1()+"' AND "
                                 +" '"+beans.getDate2()+"'";
                     
-                    ++noConditionAdded;
+                   
                                            
                 }
                 System.out.println(""+query);
@@ -203,13 +198,21 @@ public class ConnectionPaymentAction {
                                 while(resultSet.next()){
                                     ConnectionPaymentBeans item = new ConnectionPaymentBeans();
                                     item.setSr_no(""+(++srNo));
+                                    
                                     item.setName(resultSet.getString(TBLCONDETAILS_COLUMN_NAME));
                                     item.setArea(resultSet.getString(TBLCONDETAILS_COLUMN_AREA));
                                     item.setAddress(resultSet.getString(TBLCONDETAILS_COLUMN_ADDRESS));
                                     item.setCardNumber(resultSet.getString(TBLCONDETAILS_COLUMN_CARD));
                                     item.setContact(resultSet.getString(TBLCONDETAILS_COLUMN_CONTACT));
                                     
-                                    System.out.println(item);
+                                    item.setId(resultSet.getInt(TBLUSERBILL_COLUMN_ID));
+                                    item.setBillAmount(resultSet.getInt(TBLUSERBILL_COLUMN_BILLAMOUNT));
+                                    item.setPaidAmount(resultSet.getInt(TBLUSERBILL_COLUMN_PAIDAMOUNT));
+                                    item.setBalanceAmount(resultSet.getInt(TBLUSERBILL_COLUMN_BALANCEAMOUNT));
+                                    item.setBillDate(""+resultSet.getDate(TBLUSERBILL_COLUMN_BILLDATE));
+                                    item.setBalanceDate(""+resultSet.getDate(TBLUSERBILL_COLUMN_BALANCEDATE));
+                                    
+                                    list.add(item);
                                 }
                             }else{
                                 System.err.println(errorString+"ResultSet is null");
@@ -221,7 +224,7 @@ public class ConnectionPaymentAction {
                     }else{
                         System.err.println(errorString+"Connection is null");
                     }
-                } catch (ClassNotFoundException | SQLException e) {
+                } catch (ClassNotFoundException | NumberFormatException |SQLException e) {
                     System.err.println(exceptionString+e.getMessage());
                 }
             
