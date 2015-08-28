@@ -7,6 +7,7 @@ package cableaccountmanager.admin;
 
 import cableaccountmanager.actions.ConnectionBeansActions;
 import cableaccountmanager.actions.UserBeansActions;
+import cableaccountmanager.beans.AdminBeans;
 import cableaccountmanager.beans.ConnectionBeans;
 import cableaccountmanager.beans.ConnectionPaymentBeans;
 import cableaccountmanager.beans.PaymentBeans;
@@ -14,6 +15,7 @@ import cableaccountmanager.beans.UserBeans;
 import cableaccountmanager.dba.CentralRepository;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -171,6 +173,17 @@ public class AdminMainWindowController implements Initializable {
                 }else{
                     lblMsgFieldTab3.setText("Please select the connection....!");
                 }
+            }else if(actionEvent.getSource().equals(btnSearchTab2)){
+                AdminBeans adminBeans = new AdminBeans();
+                
+                adminBeans.setCardNumber(txtCardTab2.getText());
+                adminBeans.setArea(cbAreaTab2.getSelectionModel().getSelectedItem());
+                adminBeans.setBillStatus(cbBillStatusTab2.getSelectionModel().getSelectedItem());
+                adminBeans.setDate1(dpDate1Tab2.getValue().toString());
+                adminBeans.setDate2(dpDate2Tab2.getValue().toString());
+                
+                System.out.println(adminBeans);
+                
             }
         }
         

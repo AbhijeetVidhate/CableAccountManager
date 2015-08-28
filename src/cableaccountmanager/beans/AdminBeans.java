@@ -11,7 +11,7 @@ package cableaccountmanager.beans;
  */
 public class AdminBeans 
 {
-    private String cardNumber,area,paymentStatus,date1,date2;
+    private String cardNumber,area,billStatus,date1,date2;
 
     public String getCardNumber() {
         return cardNumber;
@@ -19,7 +19,7 @@ public class AdminBeans
 
     @Override
     public String toString() {
-        return "AdminTab2Beans{" + "cardNumber=" + cardNumber + ", area=" + area + ", paymentStatus=" + paymentStatus + ", date1=" + date1 + ", date2=" + date2 + '}';
+        return "AdminTab2Beans{" + "cardNumber=" + cardNumber + ", area=" + area + ", billStatus=" + billStatus + ", date1=" + date1 + ", date2=" + date2 + '}';
     }
 
     public void setCardNumber(String cardNumber) {
@@ -34,13 +34,15 @@ public class AdminBeans
         this.area = area;
     }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
+    public String getBillStatus() {
+        return billStatus;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
+    public void setBillStatus(String billStatus) {
+        this.billStatus = billStatus;
     }
+
+    
 
     public String getDate1() {
         return date1;
