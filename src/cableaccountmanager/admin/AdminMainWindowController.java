@@ -8,6 +8,7 @@ package cableaccountmanager.admin;
 import cableaccountmanager.actions.ConnectionBeansActions;
 import cableaccountmanager.actions.UserBeansActions;
 import cableaccountmanager.beans.ConnectionBeans;
+import cableaccountmanager.beans.ConnectionPaymentBeans;
 import cableaccountmanager.beans.PaymentBeans;
 import cableaccountmanager.beans.UserBeans;
 import cableaccountmanager.dba.CentralRepository;
@@ -74,10 +75,10 @@ public class AdminMainWindowController implements Initializable {
             Button btnSearchTab2,btnResetTab2,btnRemoveTab2;
         
         @FXML
-            TableView<PaymentBeans> tblPaymentStatusTab2;
+            TableView<ConnectionPaymentBeans> tblPaymentStatusTab2;
         @FXML
-            TableColumn<PaymentBeans,String> clmSrNoTab2,clmCardTab2,clmUserTab2,clmAreaTab2,
-                            tblBillAmountTab2,clmPaidAmountTab2,clmDateTab2;
+            TableColumn<ConnectionPaymentBeans,String> clmSrNoTab2,clmCardTab2,clmUserTab2,clmAreaTab2,
+                            clmBillAmountTab2,clmPaidAmountTab2,clmDateTab2;
         
     //tab3
         @FXML
@@ -193,22 +194,34 @@ public class AdminMainWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //setting the tblUserDetailsTab1 columns
+        //setting table tblUserDetailsTab1 columns
             clmSrNoTab1.setCellValueFactory(celldata -> celldata.getValue().getSr_noProperty());
             clmUserNameTab1.setCellValueFactory(celldata -> celldata.getValue().getNameProperty());
             clmContactNoTab1.setCellValueFactory(celldata -> celldata.getValue().getContactProperty());
             clmRollTab1.setCellValueFactory(celldata -> celldata.getValue().getRollProperty());
             
-        //setting thetblConnectionsDetailsTab3 
+        //setting table tblConnectionsDetailsTab3 columns
             clmSrNoTab3.setCellValueFactory(celldata -> celldata.getValue().getSr_noProperty());
             clmCardNumberTab3.setCellValueFactory(celldata -> celldata.getValue().getCardProperty());
             clmNameTab3.setCellValueFactory(celldata -> celldata.getValue().getNameProperty());
             clmAddressTab3.setCellValueFactory(celldata -> celldata.getValue().getAddressProperty());
             clmAreaTab3.setCellValueFactory(celldata -> celldata.getValue().getAreaProperty());
-            
-            
+        
+        //setting table columns
+            clmSrNoTab2.setCellValueFactory(celldata -> celldata.getValue().getSr_noProperty());
+            clmCardTab2.setCellValueFactory(celldata -> celldata.getValue().getCardNumberProperty());
+            clmUserTab2.setCellValueFactory(celldata -> celldata.getValue().getNameProperty());
+            clmAreaTab2.setCellValueFactory(celldata -> celldata.getValue().getAreaProperty());
+            clmBillAmountTab2.setCellValueFactory(celldata -> celldata.getValue().getBillAmountProperty());
+            clmPaidAmountTab2.setCellValueFactory(celldata -> celldata.getValue().getPaidAmountProperty());
+            clmDateTab2.setCellValueFactory(celldata -> celldata.getValue().getBillDateProperty());
+                    
+                    
+                    
         tblUserDetailsTab1.setItems(new UserBeansActions().getAllUsersDetails());
         cbAreaTab3.setItems(CentralRepository.AREA_OPTIONS);
+        cbAreaTab2.setItems(CentralRepository.AREA_OPTIONS);
+        cbBillStatusTab2.setItems(CentralRepository.PAYMENT_OPTIONS);
     }    
     
     
