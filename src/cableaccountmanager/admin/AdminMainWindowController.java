@@ -6,6 +6,7 @@
 package cableaccountmanager.admin;
 
 import cableaccountmanager.actions.ConnectionBeansActions;
+import cableaccountmanager.actions.ConnectionPaymentAction;
 import cableaccountmanager.actions.UserBeansActions;
 import cableaccountmanager.beans.AdminBeans;
 import cableaccountmanager.beans.ConnectionBeans;
@@ -176,13 +177,33 @@ public class AdminMainWindowController implements Initializable {
             }else if(actionEvent.getSource().equals(btnSearchTab2)){
                 AdminBeans adminBeans = new AdminBeans();
                 
-                adminBeans.setCardNumber(txtCardTab2.getText());
-                adminBeans.setArea(cbAreaTab2.getSelectionModel().getSelectedItem());
-                adminBeans.setBillStatus(cbBillStatusTab2.getSelectionModel().getSelectedItem());
-                adminBeans.setDate1(dpDate1Tab2.getValue().toString());
-                adminBeans.setDate2(dpDate2Tab2.getValue().toString());
                 
-                System.out.println(adminBeans);
+                adminBeans.setCardNumber(txtCardTab2.getText());
+                
+                    if(cbAreaTab2.getSelectionModel().getSelectedItem() != null)
+                        adminBeans.setArea(cbAreaTab2.getSelectionModel().getSelectedItem());
+                    else
+                        adminBeans.setArea("");
+                    if(cbBillStatusTab2.getSelectionModel().getSelectedItem() != null)
+                        adminBeans.setBillStatus(cbAreaTab2.getSelectionModel().getSelectedItem());
+                    else
+                        adminBeans.setBillStatus("");
+                
+                try{
+                    adminBeans.setDate1(dpDate1Tab2.getValue().toString());
+                }catch(NullPointerException nullEx){
+                    adminBeans.setDate1("");
+                }
+                try{
+                    adminBeans.setDate2(dpDate2Tab2.getValue().toString());
+                }catch(NullPointerException nullEx){
+                    adminBeans.setDate2("");
+                }
+                
+                System.out.println(""+adminBeans);
+                tblPaymentStatusTab2.setItems(new ConnectionPaymentAction().getUserBillRecords(adminBeans));
+                
+               
                 
             }
         }

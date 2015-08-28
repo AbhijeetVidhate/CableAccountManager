@@ -17,6 +17,11 @@ public class ConnectionPaymentBeans {
     private StringProperty name,address,contact,area,sr_no;
     private int id,paidAmount,billAmount,balanceAmount;
     private StringProperty cardNumber,billDate,balanceDate;
+
+    @Override
+    public String toString() {
+        return "ConnectionPaymentBeans{" + "name=" + name + ", address=" + address + ", contact=" + contact + ", area=" + area + ", sr_no=" + sr_no + ", id=" + id + ", paidAmount=" + paidAmount + ", billAmount=" + billAmount + ", balanceAmount=" + balanceAmount + ", cardNumber=" + cardNumber + ", billDate=" + billDate + ", balanceDate=" + balanceDate + '}';
+    }
     
     
     

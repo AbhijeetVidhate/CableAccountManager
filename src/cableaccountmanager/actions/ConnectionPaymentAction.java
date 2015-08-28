@@ -119,10 +119,52 @@ public class ConnectionPaymentAction {
         
 //this method return the all bill records using conditions
         public ObservableList<ConnectionPaymentBeans> getUserBillRecords(AdminBeans beans){
+            //ObservableList which is return
+                ObservableList<ConnectionPaymentBeans> list = FXCollections.observableArrayList();
+            //default query for this methos
+                String query = "select * from "+TBLUSERBILL_TABLE_NAME+" join "+TBLCONDETAILS_TABLE_NAME+" on "
+                                +"("+TBLUSERBILL_TABLE_NAME+"."+TBLUSERBILL_COLUMN_CARD+"="+TBLCONDETAILS_TABLE_NAME+"."+TBLCONDETAILS_COLUMN_CARD+")";
+                                
             
+            //create final query for exceution
             
+            //crate db connection and excute query
+                try {
+                    connection = new DBConnection();
+                    if(connection.getConnection() != null){
+                        prepareStatement = connection.getConnection().prepareStatement(query);
+                        
+                        if(prepareStatement != null){
+                           
+                            
+                            resultSet = prepareStatement.executeQuery();
+                            if(resultSet != null){
+                                while(resultSet.next()){
+                                    ConnectionPaymentBeans item = new ConnectionPaymentBeans();
+                                    item.setSr_no(""+(++srNo));
+                                    item.setName(resultSet.getString(TBLCONDETAILS_COLUMN_NAME));
+                                    item.setArea(resultSet.getString(TBLCONDETAILS_COLUMN_AREA));
+                                    item.setAddress(resultSet.getString(TBLCONDETAILS_COLUMN_ADDRESS));
+                                    item.setCardNumber(resultSet.getString(TBLCONDETAILS_COLUMN_CARD));
+                                    item.setContact(resultSet.getString(TBLCONDETAILS_COLUMN_CONTACT));
+                                    
+                                    System.out.println(item);
+                                }
+                            }else{
+                                System.err.println(errorString+"ResultSet is null");
+                            }
+                            
+                        }else{
+                            System.err.println(errorString+"PrepareStatement is null");
+                        }
+                    }else{
+                        System.err.println(errorString+"Connection is null");
+                    }
+                } catch (Exception e) {
+                    System.err.println(exceptionString+e.getMessage());
+                }
             
-        return null;
+        return list;
         }
     
         

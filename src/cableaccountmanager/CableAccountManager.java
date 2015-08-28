@@ -19,7 +19,7 @@ public class CableAccountManager extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("admin/adminMainWindow.fxml"));
         
         Scene scene = new Scene(root);
         
