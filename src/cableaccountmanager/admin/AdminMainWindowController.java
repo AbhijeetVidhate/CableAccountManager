@@ -220,9 +220,12 @@ public class AdminMainWindowController implements Initializable {
             }else if(actionEvent.getSource().equals(btnRemoveTab2)){
                 ConnectionPaymentBeans connectionPaymentBeans = tblPaymentStatusTab2.getSelectionModel().getSelectedItem();
                 
-                if(new PaymentBeansActions().removeBillRecord(connectionPaymentBeans))
+                if(new PaymentBeansActions().removeBillRecord(connectionPaymentBeans)){
+                    ObservableList<ConnectionPaymentBeans> list = tblPaymentStatusTab2.getItems();
+                    list.remove(connectionPaymentBeans);
+                    tblPaymentStatusTab2.setItems(list);
                     lblMsgFieldTab2.setText("Bill record deleted successfully...!");
-                else
+                }else
                     lblMsgFieldTab2.setText("Bill record not deleted...!");
             }
         }

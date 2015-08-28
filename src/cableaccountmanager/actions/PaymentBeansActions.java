@@ -306,7 +306,7 @@ public class PaymentBeansActions
             if(connection.getConnection() != null){
                 prepareStatement = connection.getConnection().prepareStatement(query);
                 if(prepareStatement != null){
-                    prepareStatement.setString(1, paymentBeans.getCardNumber());
+                    prepareStatement.setInt(1, connectionPaymentBeans.getId());
                     isRemove = (prepareStatement.executeUpdate()>0);
                 }else{
                     System.err.println(errorString+"PrepareStatement is null");

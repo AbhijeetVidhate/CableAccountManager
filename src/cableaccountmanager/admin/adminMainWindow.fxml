@@ -53,7 +53,7 @@
                               <TableColumn fx:id="clmDateTab2" prefWidth="92.0" text="Date" />
                           </columns>
                         </TableView>
-                        <Button fx:id="btnRemoveTab2" layoutX="14.0" layoutY="366.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Remove" />
+                        <Button fx:id="btnRemoveTab2" layoutX="14.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleButtonActions" prefHeight="25.0" prefWidth="125.0" text="Remove" />
                         <Label fx:id="lblMsgFieldTab2" layoutX="185.0" layoutY="370.0" prefHeight="17.0" prefWidth="498.0" text="Error/Message Filed" textFill="#f20f0f" />
                      </children>
                   </AnchorPane>
