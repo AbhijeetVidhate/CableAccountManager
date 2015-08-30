@@ -12,13 +12,10 @@ import cableaccountmanager.actions.UserBeansActions;
 import cableaccountmanager.beans.AdminBeans;
 import cableaccountmanager.beans.ConnectionBeans;
 import cableaccountmanager.beans.ConnectionPaymentBeans;
-import cableaccountmanager.beans.PaymentBeans;
 import cableaccountmanager.beans.UserBeans;
 import cableaccountmanager.dba.CentralRepository;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -148,13 +145,13 @@ public class AdminMainWindowController implements Initializable {
             }else if(actionEvent.getSource().equals(btnShowDetailsTab3))
             {
                 ConnectionBeans connectionBeans = tblConnectionsDetailsTab3.getSelectionModel().getSelectedItem();
-                //int seletedIndex = tblConnectionsDetailsTab3.getSelectionModel().getSelectedIndex();
+                int seletedIndex = tblConnectionsDetailsTab3.getSelectionModel().getSelectedIndex();
                 if(connectionBeans != null){
                     if(showUserDetailWindow(connectionBeans)){
                         lblMsgFieldTab3.setText("Connection removed successfully....!");
                         ObservableList<ConnectionBeans> list = tblConnectionsDetailsTab3.getItems();
-                        list.remove(connectionBeans);
-                        tblConnectionsDetailsTab3.setItems(list);
+                        
+                        tblConnectionsDetailsTab3.setItems(CentralRepository.removeAndManageSrNoCB(list, seletedIndex));
                     }else{
                         lblMsgFieldTab3.setText("Connection remove failed....!");
                     }
@@ -163,13 +160,12 @@ public class AdminMainWindowController implements Initializable {
                 }
             }else if(actionEvent.getSource().equals(btnRemoveConnectionTab3)){
                 ConnectionBeans connectionBeans = tblConnectionsDetailsTab3.getSelectionModel().getSelectedItem();
-                
+                int removeIndex = tblConnectionsDetailsTab3.getSelectionModel().getSelectedIndex();
                 if(connectionBeans != null){
                     if(new ConnectionBeansActions().removeConnectionBills(connectionBeans)){
                         lblMsgFieldTab3.setText("Connection removed successfully....!");
                         ObservableList<ConnectionBeans> list = tblConnectionsDetailsTab3.getItems();
-                        list.remove(connectionBeans);
-                        tblConnectionsDetailsTab3.setItems(list);
+                        tblConnectionsDetailsTab3.setItems(CentralRepository.removeAndManageSrNoCB(list, removeIndex));
                     }else{
                         lblMsgFieldTab3.setText("Connection remove failed....!");
                     }
@@ -219,11 +215,11 @@ public class AdminMainWindowController implements Initializable {
                 resetFields(btnResetTab2);
             }else if(actionEvent.getSource().equals(btnRemoveTab2)){
                 ConnectionPaymentBeans connectionPaymentBeans = tblPaymentStatusTab2.getSelectionModel().getSelectedItem();
-                
+                int selectIndex = tblPaymentStatusTab2.getSelectionModel().getSelectedIndex();
                 if(new PaymentBeansActions().removeBillRecord(connectionPaymentBeans)){
                     ObservableList<ConnectionPaymentBeans> list = tblPaymentStatusTab2.getItems();
-                    list.remove(connectionPaymentBeans);
-                    tblPaymentStatusTab2.setItems(list);
+                    
+                    tblPaymentStatusTab2.setItems(CentralRepository.removeAndManageSrNoCPB(list, selectIndex));
                     lblMsgFieldTab2.setText("Bill record deleted successfully...!");
                 }else
                     lblMsgFieldTab2.setText("Bill record not deleted...!");

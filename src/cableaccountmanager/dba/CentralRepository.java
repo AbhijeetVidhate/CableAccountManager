@@ -5,6 +5,8 @@
  */
 package cableaccountmanager.dba;
 
+import cableaccountmanager.beans.ConnectionBeans;
+import cableaccountmanager.beans.ConnectionPaymentBeans;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -24,5 +26,35 @@ public class CentralRepository
     
     public static final ObservableList<String> USER_OPTIONS = 
             FXCollections.observableArrayList("User","Admin");
-        
+    
+    //private ConnectionBeans connectionBeans;
+    //private ConnectionPaymentBeans connectionPaymentBeans;
+    
+    //private ObservableList<ConnectionBeans> connectionBeansList;
+    private static int defaultSrNo = 1;
+    public static ObservableList<ConnectionBeans> removeAndManageSrNoCB(ObservableList<ConnectionBeans> list,int removeItemIndex){
+        defaultSrNo = 1;
+        if(list != null && removeItemIndex != 0){
+            list.remove(removeItemIndex);
+            list.stream().forEach((connectionBeans) -> { 
+                connectionBeans.setSr_no(""+(defaultSrNo++));
+            });
+            return list;
+        }else{
+            return list;
+        }
+    }
+    
+    public static ObservableList<ConnectionPaymentBeans> removeAndManageSrNoCPB(ObservableList<ConnectionPaymentBeans> list,int removeItemIndex){
+        defaultSrNo = 1;
+        if(list != null && removeItemIndex != 0){
+            list.remove(removeItemIndex);
+            list.stream().forEach((connectionPaymentBeans) -> { 
+                connectionPaymentBeans.setSr_no(""+(defaultSrNo++));
+            });
+            return list;
+        }else{
+            return list;
+        }
+    }
 }

@@ -96,6 +96,7 @@ public class LoginWindowController extends AnchorPane implements Initializable{
                 Parent parent = loader.load();
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
+                stage.setTitle("Shree Gajanan Prasana...!");
                 stage.setScene(scene);
                 stage.show();
                 isOpen = true;
