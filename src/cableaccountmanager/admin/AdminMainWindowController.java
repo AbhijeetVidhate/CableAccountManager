@@ -243,6 +243,7 @@ public class AdminMainWindowController implements Initializable {
             dpDate1Tab2.setValue(null);
             dpDate2Tab2.setValue(null);
             lblMsgFieldTab2.setText("");
+            tblPaymentStatusTab2.getItems().clear();
         }else if(btnReset.equals(btnResetTab3)){
             //reseting tab3 fields
             txtCardTab3.setText("");
