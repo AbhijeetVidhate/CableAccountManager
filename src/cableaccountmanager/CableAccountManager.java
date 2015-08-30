@@ -22,7 +22,7 @@ public class CableAccountManager extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("LoginWindow.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Shree Gajanan Prasana...!");
         stage.setScene(scene);
         stage.show();
     }
